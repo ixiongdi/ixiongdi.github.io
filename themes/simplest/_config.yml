@@ -1,0 +1,15 @@
+menu:
+  home: /
+  archive: /archives/
+
+excerpt_link: Read More
+
+fancybox: true
+
+github: ixiongdi
+
+comment:
+  enable: true
+  disqus_shortname: ixiongdi
+
+google_analytics:
