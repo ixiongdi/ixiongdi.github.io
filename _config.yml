@@ -84,12 +84,12 @@ deploy:
 - type: git
   repo: git@gitee.com:kotlin/kotlin.git
   # branch: osc-pages
-# Qiniu
+
 # plugins:
 #   - hexo-qiniu-sync
 # qiniu:
-#   offline: false
-#   sync: true
+#   offline: true
+#   sync: false
 #   bucket: blog
 #   # secret_file: sec/qn.json or C:
 #   access_key: 4G4t3KN85im6zdaMZn1Q4OjzzKKgiotoWxOx_xQE
@@ -106,3 +106,5 @@ deploy:
 #     folder: js
 #   css:
 #     folder: css
+
+# neat_enable: true
