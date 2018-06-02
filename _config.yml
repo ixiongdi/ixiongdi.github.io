@@ -5,15 +5,15 @@
 # Site
 title: 一语
 subtitle: One word, fun! -> 1word.fun
-description: AI,Big Data,Java,React,Spring Boot
-keywords: Blog
+description: AI,Big Data,Java,React,Spring Boot,Vue,Python
+keywords: Blog,Java,Spring Boot
 author: 熊迪
 language: zh-CN
 timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://1word.fun
+url: https://1word.fun
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -84,3 +84,25 @@ deploy:
 - type: git
   repo: git@gitee.com:kotlin/kotlin.git
   # branch: osc-pages
+# Qiniu
+# plugins:
+#   - hexo-qiniu-sync
+# qiniu:
+#   offline: false
+#   sync: true
+#   bucket: blog
+#   # secret_file: sec/qn.json or C:
+#   access_key: 4G4t3KN85im6zdaMZn1Q4OjzzKKgiotoWxOx_xQE
+#   secret_key: i19XF7VV6oDsbnZlgxbSncYtIQKH-BYXB3eXZWnl
+#   dirPrefix: public
+#   urlPrefix: http://p9ol21ob5.bkt.clouddn.com/public
+#   up_host: http://upload.qiniup.com
+#   local_dir: public
+#   update_exist: true
+#   image: 
+#     folder: images
+#     extend: 
+#   js:
+#     folder: js
+#   css:
+#     folder: css
