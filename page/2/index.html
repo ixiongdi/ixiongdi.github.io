@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-45018235-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>一语</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AI,Big Data,Java,React,Spring Boot,Vue,Python">
+<meta name="keywords" content="Blog,Java,Spring Boot">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一语">
+<meta property="og:url" content="https://1word.fun/page/2/index.html">
+<meta property="og:site_name" content="一语">
+<meta property="og:description" content="AI,Big Data,Java,React,Spring Boot,Vue,Python">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一语">
+<meta name="twitter:description" content="AI,Big Data,Java,React,Spring Boot,Vue,Python">
+  
+    <link rel="alternate" href="/atom.xml" title="一语" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一语</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">One word, fun! -&gt; 1word.fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://1word.fun"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-13" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/30/13/" class="article-date">
+  <time datetime="2018-06-30T06:39:57.000Z" itemprop="datePublished">2018-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/30/13/">从零开始写数据库（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="创建具有网络功能的数据库"><a href="#创建具有网络功能的数据库" class="headerlink" title="创建具有网络功能的数据库"></a>创建具有网络功能的数据库</h1><p>修改main.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"net"</span></span><br><span class="line">	<span class="string">"bufio"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">defer</span> Save()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 监听8080端口</span></span><br><span class="line">	ln, err := net.Listen(<span class="string">"tcp"</span>, <span class="string">":8080"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="comment">// handle error</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 死循环</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="comment">// 拿到连接</span></span><br><span class="line">		conn, err := ln.Accept()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="comment">// handle error</span></span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 处理函数</span></span><br><span class="line">		<span class="keyword">go</span> handleConnection(conn)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleConnection</span><span class="params">(conn net.Conn)</span></span>  &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Response，返回数据</span></span><br><span class="line">	send := bufio.NewWriter(conn)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Request，接受数据</span></span><br><span class="line">	scanner := bufio.NewScanner(conn)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 这里以\n作为分隔符</span></span><br><span class="line">	<span class="keyword">for</span> scanner.Scan() &#123;</span><br><span class="line">		<span class="comment">// 命令分隔符，这里以一个空格作为分隔符</span></span><br><span class="line">		arr := strings.Split(scanner.Text(), <span class="string">" "</span>)</span><br><span class="line"></span><br><span class="line">		command := arr[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">		fmt.Println(command)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">switch</span> command &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"set"</span>:</span><br><span class="line">			key, value := arr[<span class="number">1</span>], arr[<span class="number">2</span>]</span><br><span class="line">			Put(key, value)</span><br><span class="line">		    send.WriteString(<span class="string">"Set success!\n"</span>)</span><br><span class="line">		<span class="keyword">case</span> <span class="string">"get"</span>:</span><br><span class="line">			key := arr[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">			value := Get(key)</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> value == <span class="string">""</span> &#123;</span><br><span class="line">				send.WriteString(<span class="string">"Get fail, key not found!\n"</span>)</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				send.WriteString(<span class="string">"Get success, this is result: "</span>)</span><br><span class="line">				send.WriteString(value)</span><br><span class="line">				send.WriteString(<span class="string">"\n"</span>)</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> <span class="string">"del"</span>:</span><br><span class="line">			key := arr[<span class="number">1</span>]</span><br><span class="line">			Delete(key)</span><br><span class="line">		    send.WriteString(<span class="string">"Del success!\n"</span>)</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			fmt.Println(<span class="string">"Not support command!"</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		send.Flush()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err := scanner.Err(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Fprintln(os.Stderr, <span class="string">"reading standard input:"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里用类似redis的command处理请求</p>
+<ol>
+<li><p>新增、修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> [key] [value]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get [key]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del [key]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>我们使用telnet来测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">telnet 127.0.0.1 8080</span><br><span class="line"></span><br><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost.</span><br><span class="line">Escape character is <span class="string">'^]'</span>.</span><br><span class="line"><span class="built_in">set</span> a b</span><br><span class="line">Set success!</span><br><span class="line">get a</span><br><span class="line">Get success, this is result: b</span><br><span class="line">del a</span><br><span class="line">Del success!</span><br><span class="line">get a</span><br><span class="line">Get fail, key not found!</span><br></pre></td></tr></table></figure>
+<p>如预期的一致，这个时候我们的数据具有了处理网络连接的功能，但是显然这样的数据库还是太弱了。我们的最终目标是创建一个类似LevelDB+Redis的数据库</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/30/13/" data-id="ck90xgts6000j57u9flvgpbol" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/30/12/" class="article-date">
+  <time datetime="2018-06-30T06:39:52.000Z" itemprop="datePublished">2018-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/30/12/">从零开始写数据库（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="持久化数据"><a href="#持久化数据" class="headerlink" title="持久化数据"></a>持久化数据</h1><p>这里使用csv格式保存数据</p>
+<p>修改db.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"encoding/csv"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> FILE = <span class="string">"./db.csv"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个map</span></span><br><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="comment">// 初始化map</span></span><br><span class="line">	m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打开文件</span></span><br><span class="line">	file, err := os.Open(FILE)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">defer</span> file.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取CSV文件</span></span><br><span class="line">	reader := csv.NewReader(file)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取数据，这里data的类型是[][]string</span></span><br><span class="line">	data, err := reader.ReadAll()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 循环数组</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(data); i++  &#123;</span><br><span class="line">		<span class="comment">// 获取行</span></span><br><span class="line">		row := data[i]</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 第一个为key</span></span><br><span class="line">		key := row[<span class="number">0</span>]</span><br><span class="line">		<span class="comment">// 第二个为value</span></span><br><span class="line">		value := row[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 保持到内存</span></span><br><span class="line">		m[key] = value</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 新建，修改</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Put</span><span class="params">(key <span class="keyword">string</span>, value <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	m[key] = value</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Delete</span><span class="params">(key <span class="keyword">string</span>)</span></span>  &#123;</span><br><span class="line">	<span class="built_in">delete</span>(m, key)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 读取</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Get</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> m[key]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入文件</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Save</span><span class="params">()</span></span>  &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 新建写入流</span></span><br><span class="line">	buf := <span class="built_in">new</span>(bytes.Buffer)</span><br><span class="line"></span><br><span class="line">	writer := csv.NewWriter(buf)</span><br><span class="line"></span><br><span class="line">	log.Print(m)</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> m &#123;</span><br><span class="line">		log.Printf(k, v)</span><br><span class="line">		<span class="comment">// 写入数据</span></span><br><span class="line">		writer.Write([]<span class="keyword">string</span>&#123;k, v&#125;)</span><br><span class="line">		writer.Flush()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	log.Println(buf)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 保存到文件</span></span><br><span class="line">	ioutil.WriteFile(FILE, buf.Bytes(), <span class="number">0777</span> )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们写个测试类测试</p>
+<p>main_test.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"testing"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestPut</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	Put(<span class="string">"hello"</span>, <span class="string">"world"</span>)</span><br><span class="line">	t.Log(<span class="string">"insert a record"</span>)</span><br><span class="line">	value := Get(<span class="string">"hello"</span>)</span><br><span class="line">	<span class="keyword">if</span> value == <span class="string">"world"</span> &#123;</span><br><span class="line">		t.Log(<span class="string">"get a record"</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		t.Error(<span class="string">"insert error"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	t.Log(<span class="string">"save"</span>)</span><br><span class="line">	<span class="keyword">defer</span> Save()</span><br><span class="line">	t.Log(<span class="string">"save"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestGet</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	value := Get(<span class="string">"hello"</span>)</span><br><span class="line">	<span class="keyword">if</span> value == <span class="string">"world"</span> &#123;</span><br><span class="line">		t.Log(<span class="string">"get a record"</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		t.Error(<span class="string">"insert error"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> Save()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestDelete</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	Delete(<span class="string">"hello"</span>)</span><br><span class="line">	value := Get(<span class="string">"hello"</span>)</span><br><span class="line">	<span class="keyword">if</span> value == <span class="string">"world"</span> &#123;</span><br><span class="line">		t.Error(<span class="string">"get a record"</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		t.Log(<span class="string">"insert error"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> Save()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>开测</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">2018/06/30 14:26:29 map[hello:world]</span><br><span class="line">2018/06/30 14:26:29 hello: world</span><br><span class="line">2018/06/30 14:26:29 hello,world</span><br><span class="line"></span><br><span class="line">2018/06/30 14:26:29 map[hello:world]</span><br><span class="line">2018/06/30 14:26:29 hello: world</span><br><span class="line">2018/06/30 14:26:29 hello,world</span><br><span class="line"></span><br><span class="line">2018/06/30 14:26:29 map[]</span><br><span class="line">2018/06/30 14:26:29 </span><br><span class="line">PASS</span><br><span class="line">ok  	github.com/ixiongdi/leveldb	0.013s</span><br></pre></td></tr></table></figure>
+<p>结果如预期的一样，这样我们实现了一个简单的具有数据持久化功能的kv数据库</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/30/12/" data-id="ck90xgtrt000257u9ha2os0ey" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/30/11/" class="article-date">
+  <time datetime="2018-06-30T01:41:02.000Z" itemprop="datePublished">2018-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/30/11/">从零开始写数据库（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近些年各种数据库层出不穷，归根结底是因为互联网的快速发展，现有数据库无法满足需求。</p>
+<p>数据库技术高深莫测，今天我们就来自己动手实现一个数据库系统。实现语言为Go。</p>
+<p>当今数据库可分为几大类型</p>
+<ol>
+<li>Relational DBMS，传统的关系型数据库也就是我们常说的以SQL为查询语言的数据库，代表作有MySQL、PostgreSQL</li>
+<li>Document store，文档数据库，数据模式自由，代表作有MongoDB</li>
+<li>Key-value store，键值存储数据库，代表作有Redis</li>
+<li>Search engine，搜索引擎，代表作有Elasticsearch</li>
+<li>Wide column store，宽行数据库，代表作有Cassandra</li>
+</ol>
+<p>虽然说数据库类型很多，但是其底层都离不开一个存储引擎。这个存储引擎多半是个KV数据库系统</p>
+<p>我们以业内比较早，实现清晰的LevelDB作为参考实现</p>
+<h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><p>在GitHub上新建一个项目<em>LevelGo</em></p>
+<p>新建文件main.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"Hello, world!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run main.go</span><br></pre></td></tr></table></figure>
+<p>输出结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, world!</span><br></pre></td></tr></table></figure></p>
+<h1 id="基于内存的数据库"><a href="#基于内存的数据库" class="headerlink" title="基于内存的数据库"></a>基于内存的数据库</h1><p>新建文件db.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个map</span></span><br><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化map</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 新建，修改</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Put</span><span class="params">(key <span class="keyword">string</span>, value <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	m[key] = value</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Delete</span><span class="params">(key <span class="keyword">string</span>)</span></span>  &#123;</span><br><span class="line">	<span class="built_in">delete</span>(m, key)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 读取</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Get</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> m[key]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改main.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	fmt.Println(<span class="string">"Hello, world!"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 插入</span></span><br><span class="line">	Put(<span class="string">"hello"</span>, <span class="string">"world"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取</span></span><br><span class="line">	fmt.Println(Get(<span class="string">"hello"</span>))</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 删除</span></span><br><span class="line">	Delete(<span class="string">"hello"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 读取</span></span><br><span class="line">	fmt.Println(Get(<span class="string">"hello"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">go run *.go</span><br><span class="line"></span><br><span class="line">Hello, world!</span><br><span class="line">world</span><br></pre></td></tr></table></figure></p>
+<p>当然一个完整的数据库不可能这么简单</p>
+<p>这是一个内存数据库，不能持久化数据。而且支持的存储类型只有string一种</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/30/11/" data-id="ck90xgts7000k57u9oyrsnt2r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LevelDB/">LevelDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/29/10/" class="article-date">
+  <time datetime="2018-06-29T08:28:49.000Z" itemprop="datePublished">2018-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/29/10/">极致性能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇文章主要讲目前我自己认为的最优化的性能解决方案</p>
+<p>目前来说程序的前后分离越来越明显，而且端也是越来越多</p>
+<p>简单点来说前端</p>
+<ol>
+<li>传统的PC Web网页，虽然现在移动端盛行，但是例如企业官网、协同工作、网上商城、资讯类网站仍然需要一个传统的的WEB网站</li>
+<li>iOS、Android手机类App，人类已经离不开手机了</li>
+<li>移动端的H5，跨平台的解决方啊，因为小程序的出现破灭了</li>
+<li>小程序，包括微信小程序和支付宝小程序，为了构建自己的商业闭环</li>
+<li>快应用，各大手机厂商联合搞的，类似小程序。为了不被垄断</li>
+</ol>
+<p>这么复杂的前端，导致了前后分离的越来越明显，后端越来越只提供API服务，前端SPA（单页应用）</p>
+<h1 id="前后联动"><a href="#前后联动" class="headerlink" title="前后联动"></a>前后联动</h1><p>一个完整的软件用户体验就是</p>
+<ol>
+<li>用户操作<br>例如注册</li>
+<li>反馈到到端<br>程序发起网络请求</li>
+<li>DNS<br>网络请求通常都是域名访问、这一步会经过DNS解析拿到真实的IP地址。当然了直接写IP也行。<br>通常来说这一步几乎不存在性能瓶颈DNS会有缓存，这一步的瓶颈更多的是网络延迟。这一步的优化更多的是选择一个好的DNS服务商，节点更多、延迟更低，服务更稳定。目前来说免费的就够用了</li>
+<li>API Gateway<br>API网关，各大云服务商都有提供LBS，就我个人来说，必要性不是很大。如果说API流量很大，那么LBS目前的定制化功能是不够的，大公司一般会弄自己的LBS。对于小项目来说nginx足以。nginx也不会是性能的瓶颈，单机几百万并发。搞两个做备份绝大多数需求都能满足了</li>
+<li>Micro Service<br>微服务，目前后端的趋势向微服务或Server Less方向发展。微服务的两大好处就是<em>高可用</em>和<em>解决糅合</em>。为啥子呢？高可用的意思就是其中一个服务挂了其他的要正常。保证不全面崩溃。解决糅合就是开发上协作分工，更快交付</li>
+<li>Server Less<br>目前比较新的概念，无服务开发模式。啥意思？<br>目前各大云服务厂商推出了各种云存储、云直播、云分析、云数据库。人们的开发模式发生了很大变化，不再购买服务器、不再购买带宽、不再自建数据库、不再购买磁盘。人们只需专注于产品本身。人们使用云服务厂商提供的API写程序。后来人们发现，既然我全部使用的是云，那么我干嘛程序不也用云呢。于是就诞生了如AMS Lambda这样的服务。但是这个概念太新，和云服务厂商绑定的太死，灵活度不够。目前来说还不太能大规模部署，但是可以小规模试用 </li>
+</ol>
+<h2 id="那么问题来了，后端性能的瓶颈几乎就落在了microservice上面"><a href="#那么问题来了，后端性能的瓶颈几乎就落在了microservice上面" class="headerlink" title="那么问题来了，后端性能的瓶颈几乎就落在了microservice上面"></a>那么问题来了，后端性能的瓶颈几乎就落在了microservice上面</h2><p>首先从语言层面来说，参考<a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/" target="_blank" rel="noopener">The Computer Language Benchmarks Game</a></p>
+<ul>
+<li>性能的第一档C、C++。</li>
+</ul>
+<p>性能确实足够优秀，你也找不到更好的语言了。但是并不太适合microservice的开发。开发效率和工具链都不太适合，只能开发一些核心业务。</p>
+<ul>
+<li>性能第二档Rust、Go、Swift</li>
+</ul>
+<p>这三个语言都是比较新，对人类比较友好的语言。</p>
+<p>Rust比较像C++，说实话过于复杂了，性能接近C、C++等原生语言。目前来说网络框架和库比较少。更多的是开发一些系统级的应用，过高的复杂度在开发效率上也得不到保证。</p>
+<p>Go比较简单，接近C的语法，各种网络框架和库层出不穷。比较适合微服务的开发</p>
+<p>Swift苹果出品，语法上我觉得比较接近scala。目前来说也是网络框架和库比较少，更多还是开发iOS应用</p>
+<ul>
+<li>性能第三档Java、C#</li>
+</ul>
+<p>Java目前使用最广泛的语言，框架和库数不胜数。JVM经过多年优化性能大概是C的一半。缺点就是比较吃内存，而且GC也十个问题。适合开发大型项目</p>
+<p>C#性能上来说和Java差不多，但是框架和库相对Java来说是比较少的。没有Java活跃</p>
+<ul>
+<li>性能第四档JavaScript、TypeScript</li>
+</ul>
+<p>本来JS应该属于第五档的语言，可是在V8加持下的Node天然的并发特性，使得它的性能和并发都能契合到微服务的开发上来</p>
+<ul>
+<li>性能第五档PHP、Python、Ruby</li>
+</ul>
+<p>PHP近些年受到HHVM、PHP7的影响，性能有了大幅度的提升。但还是不够，这是语言特性受限。还是比较适合开发传统网站</p>
+<p>Python的性能甚至不如PHP，还是适合当工具语言使用</p>
+<p>Ruby和Python差不多，2.0以后性能有了些提升，但是和PHP一样，开发网站的利器。</p>
+<p>总的来说，第五档的语言由于性能的关系，都不太适合开发微服务。</p>
+<h2 id="抉择1"><a href="#抉择1" class="headerlink" title="抉择1"></a>抉择1</h2><p>优先选择Go</p>
+<p>优点：语法简单、天然并发、性能高、社区成熟<br>缺点： 缺点就是Go还是不够普及、学习成本还是有的</p>
+<p>其次选择Java</p>
+<p>优点：成熟的框架和库，门槛低、简单易学、适合团队写作<br>缺点：GC的延迟、比较吃内存，性能还是比Java差一点，但是不多，能接受</p>
+<p>再次选择TypeScript</p>
+<p>优点：JavaScript加强版，完全兼容js缺摒弃了js的一些缺点，成熟的社区、高并发，前后端通用<br>缺点：性能比Go和Java要差的多，大概有几倍的差距</p>
+<p>综合看来，我的抉择也是大势所趋。</p>
+<p>Java已经有20多年的历史了，经久不衰，经过了时间的考验，近年来高居各大语言排行榜第一名。都说Java已死，目前看来再活个10年完全没有问题</p>
+<p>Go自从2009年推出以后就蓬勃发展，很多重量级应用都是Go写的。背后也有谷歌的推动。在中国几乎成为了主流语言</p>
+<p>TypeScript微软出品，JS多年来被人诟病，但是即使这样前端也被JS一统天下，当没有缺点的JS【TypeScript】，彻底的统一前后端</p>
+<h2 id="抉择2"><a href="#抉择2" class="headerlink" title="抉择2"></a>抉择2</h2><p>脱离了语言那就是框架了，参考<a href="http://www.techempower.com/benchmarks/#section=data-r16&amp;hw=ph&amp;test=json&amp;l=hr9njz&amp;a=2" target="_blank" rel="noopener">Web Framework Benchmarks</a></p>
+<h3 id="JSON-serialization"><a href="#JSON-serialization" class="headerlink" title="JSON serialization"></a>JSON serialization</h3><p>在JSON serialization测试环节中前十名都是Java的项目，可见Java20年的沉淀，弄出了多少优秀的框架</p>
+<p>Go的fasthttp排在13名，但是性能差别不大，能达到第一名的80%</p>
+<p>Js的表现差一些排在23名，但是性能也能达到第一名的44%。这个性能的差距完全是语言本身的性能差距</p>
+<p>当然这个测试的意义对于微服务来说更多体现在框架的IO性能和JSON的序列化性能</p>
+<h3 id="Single-query"><a href="#Single-query" class="headerlink" title="Single query"></a>Single query</h3><p>这个是单次查询，在实际的测试中肯定是要和数据库交互的，那么这个测试的参考意义还是很大的</p>
+<p>这个要做一些删选<a href="http://www.techempower.com/benchmarks/#section=data-r16&amp;hw=ph&amp;test=db&amp;l=hr9njz&amp;a=2&amp;o=3" target="_blank" rel="noopener"></a></p>
+<p>排第一的是Java的vertx，go的fasthttp排在第三，能达到第一名的63%，我个人认为这个差距可能是一些实现细节的差距，Js就比较惨了排到了28名，而且只有第一名性能的26%。</p>
+<h3 id="Multiple-queries"><a href="#Multiple-queries" class="headerlink" title="Multiple queries"></a>Multiple queries</h3><p>在实际的业务中单次查询是解决不了问题的</p>
+<p>排第一的还是vertx，够排在第四，能达到第一名的60%，js只能达到20%</p>
+<p>后面的结果都差不多</p>
+<p>其实go的性能和java应该算是旗鼓相当。js比较惨的原因可能就是语言性能本身的差距</p>
+<p>目前看来Java的可选框架还是比较多的</p>
+<p>底层基于Netty和Undertow的性能都不会差，可选的有Spring Framework、Act Framework、rapidoid、vertx</p>
+<p>Go来说的话fasthttp一骑绝尘</p>
+<p>JS可选业挺多的express、koa、restify</p>
+<h2 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h2><p>在微服务中、最终落地还是需要喝数据库打交道</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><h3 id="MySQL-vs-PostgreSQL"><a href="#MySQL-vs-PostgreSQL" class="headerlink" title="MySQL vs PostgreSQL"></a>MySQL vs PostgreSQL</h3><p>传统关系型数据库来说就两个选择mysql和postgresql。这两者的性能相当。就更广泛的通用性来说选择mysql比较好。之前就有人得出结论web服务用mysql，分析用postgresql。简单点来说如果你的微服务是面向大众用户的话选择mysql。如果内部使用选择PostgreSQL</p>
+<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><h3 id="Redis-vs-Memcache"><a href="#Redis-vs-Memcache" class="headerlink" title="Redis vs Memcache"></a>Redis vs Memcache</h3><p>memcache是个纯缓存数据库，redis不仅可以做缓存还可以持久化</p>
+<p>目前来说redis发展迅猛。个人感觉没有必要在新项目中使用memcache</p>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>这个似乎没得选</p>
+<p>具体业务中使用哪种数据库根据业务类型来判断</p>
+<h2 id="RPC-vs-RUSTful"><a href="#RPC-vs-RUSTful" class="headerlink" title="RPC vs RUSTful"></a>RPC vs RUSTful</h2><p>内部服务建议使用RPC达到最高性能</p>
+<p>rpc框架还是比较多的这里比较推荐谷歌开源的gRPC和Facebook开源的thrift，其他的都不推荐，第一是不跨语言，第二就是国内的开源的尿性，要么开源了不维护，要么只开源一部分藏着掖着</p>
+<p>对外服务建议使用RESTful达到最广泛的通用性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/29/10/" data-id="ck90xgtrm000057u9ggi2l7ro" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/">TypeScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/29/9/" class="article-date">
+  <time datetime="2018-06-29T06:46:07.000Z" itemprop="datePublished">2018-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/29/9/">Go Web Framework比较</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Go语言诞生快十年了，已经不能说是一门新语言了。现在涌现出来出来非常多的Web框架。今天就选取其中几个来比较一下</p>
+<p>今天选取的是三个FullStack框架，也就是啥都能干的框架</p>
+<h1 id="beego"><a href="#beego" class="headerlink" title="beego"></a>beego</h1><p>这个是国产的开源框架</p>
+<p>先来看看怎么启动的</p>
+<p>主程序<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"hello/controllers"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/astaxie/beego"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	beego.BConfig.RunMode = <span class="string">"prod"</span></span><br><span class="line">	beego.Router(<span class="string">"/json"</span>, &amp;controllers.JsonController&#123;&#125;)</span><br><span class="line">	beego.Router(<span class="string">"/plaintext"</span>, &amp;controllers.PlaintextController&#123;&#125;)</span><br><span class="line">	beego.Run()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>主程序主要是设置配置，配置路由和启动服务</p>
+<p>控制器<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> controllers</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> PlaintextController <span class="keyword">struct</span> &#123;</span><br><span class="line">	Base</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> helloWorldString = <span class="string">"Hello, World!"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	helloWorldBytes = []<span class="keyword">byte</span>(helloWorldString)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *PlaintextController)</span> <span class="title">Get</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c.Ctx.Output.Header(<span class="string">"Content-Type"</span>, <span class="string">"text/plain"</span>)</span><br><span class="line">	c.Ctx.Output.Body(helloWorldBytes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>控制器负责处理请求</p>
+<p>整体看下来，封装的应该比较简洁，但是ctx这块感觉不太雅观</p>
+<h1 id="revel"><a href="#revel" class="headerlink" title="revel"></a>revel</h1><p>revel比较像Java和Scala的Play Framework</p>
+<p>revel这个框架封装的比较深，看官方的例子需要使用提供的<em>revel</em>命令行才能使用，虽然beego也提供了bee工具，但是也可以不使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载库</span></span><br><span class="line">go get github.com/revel/revel</span><br><span class="line"><span class="comment"># 安装命令行</span></span><br><span class="line">go get github.com/revel/cmd/revel</span><br><span class="line"><span class="comment"># 导出到环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PATH</span>:<span class="variable">$GOPATH</span>/bin"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">~</span><br><span class="line">~ revel! http://revel.github.io</span><br><span class="line">~</span><br><span class="line">usage: revel <span class="built_in">command</span> [arguments]</span><br><span class="line"></span><br><span class="line">The commands are:</span><br><span class="line"></span><br><span class="line">    new         create a skeleton Revel application</span><br><span class="line">    run         run a Revel application</span><br><span class="line">    build       build a Revel application (e.g. <span class="keyword">for</span> deployment)</span><br><span class="line">    package     package a Revel application (e.g. <span class="keyword">for</span> deployment)</span><br><span class="line">    clean       clean a Revel application<span class="string">'s temp files</span></span><br><span class="line"><span class="string">    test        run all tests from the command-line</span></span><br><span class="line"><span class="string">    version     displays the Revel Framework and Go version</span></span><br></pre></td></tr></table></figure>
+<p>先新建一个项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">revel new demo</span><br><span class="line">revel run demo</span><br></pre></td></tr></table></figure>
+<p>然后访问<a href="http://localhost:9000" target="_blank" rel="noopener">http://localhost:9000</a></p>
+<p>这样看revel使用起来比较方便</p>
+<p>路由是在单独的文件里面配置的，在/conf/routes，然后revel会自动生成routers.go<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Routes Config</span><br><span class="line">#</span><br><span class="line"># This file defines all application routes (Higher priority routes first)</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">module:testrunner</span><br><span class="line"># module:jobs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GET     /                                       App.Index</span><br><span class="line"></span><br><span class="line"># Ignore favicon requests</span><br><span class="line">GET     /favicon.ico                            404</span><br><span class="line"></span><br><span class="line"># Map static resources from the /app/public folder to the /public path</span><br><span class="line">GET     /public/*filepath                       Static.Serve(&quot;public&quot;)</span><br><span class="line"></span><br><span class="line"># Catch all, this will route any request into the controller path</span><br><span class="line">#</span><br><span class="line">#                    **** WARNING ****</span><br><span class="line"># Enabling this exposes any controller and function to the web.</span><br><span class="line"># ** This is a serious security issue if used online **</span><br><span class="line">#</span><br><span class="line"># For rapid development uncomment the following to add new controller.action endpoints</span><br><span class="line"># without having to add them to the routes table.</span><br><span class="line"># *       /:controller/:action                    :controller.:action</span><br></pre></td></tr></table></figure></p>
+<p>真正的处理请求在app.go<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> controllers</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/revel/revel"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> App <span class="keyword">struct</span> &#123;</span><br><span class="line">	*revel.Controller</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c App)</span> <span class="title">Index</span><span class="params">()</span> <span class="title">revel</span>.<span class="title">Result</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> c.Render()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>封装的确实比较深了，但是开发起来会很方便，就是自定义话成都不高</p>
+<h1 id="aah"><a href="#aah" class="headerlink" title="aah"></a>aah</h1><p>安装工具<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">go get -u aahframework.org/tools.v0/aah</span><br><span class="line"></span><br><span class="line">aah</span><br><span class="line"></span><br><span class="line">‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾</span><br><span class="line">           aah framework v0.10 - https://aahframework.org           </span><br><span class="line">____________________________________________________________________</span><br><span class="line"><span class="comment"># Report improvements/bugs at https://github.com/go-aah/aah/issues #</span></span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  aah [global options] <span class="built_in">command</span> [<span class="built_in">command</span> options] [arguments...]</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  new, n          Create new aah <span class="string">'web'</span> or <span class="string">'api'</span> application (interactive)</span><br><span class="line">  run, r          Run aah framework application (supports hot-reload)</span><br><span class="line">  build, b        Build aah application <span class="keyword">for</span> deployment</span><br><span class="line">  list, l         List all aah projects <span class="keyword">in</span> GOPATH</span><br><span class="line">  clean, c        Cleans the aah generated files and build directory</span><br><span class="line">  switch, s       Switch between aah release and edge version</span><br><span class="line">  update, u       Update your aah to the latest release version on your GOPATH</span><br><span class="line">  generate, g     Generates boilerplate code, configurations, complement scripts (systemd, docker), etc.</span><br><span class="line">  <span class="built_in">help</span>, h         Shows a list of commands or <span class="built_in">help</span> <span class="keyword">for</span> one <span class="built_in">command</span></span><br><span class="line"></span><br><span class="line">Global Options:</span><br><span class="line">  -h, --<span class="built_in">help</span>     show <span class="built_in">help</span></span><br><span class="line">  -v, --version  <span class="built_in">print</span> aah framework version and go version</span><br></pre></td></tr></table></figure></p>
+<p>这三个框架都提供了命令行工具，方便了开发部署</p>
+<p>aah也是通过配置文件来配置路由</p>
+<p>config/routes.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">routes &#123;</span><br><span class="line">...</span><br><span class="line">      #------------------------------------------------------</span><br><span class="line">      # Pick an unique name, it&apos;s called `route name`,</span><br><span class="line">      # used for reverse URL.</span><br><span class="line">      #------------------------------------------------------</span><br><span class="line">      index &#123;</span><br><span class="line">        # path is used to match incoming requests</span><br><span class="line">        # It can contain `:name` - Named parameter and</span><br><span class="line">        # `*name` - Catch-all parameter</span><br><span class="line">        path = &quot;/&quot;</span><br><span class="line"></span><br><span class="line">        # HTTP method mapping, It can be multiple `HTTP` methods with comma separated</span><br><span class="line">        # Default value is `GET`, it can be lowercase or uppercase</span><br><span class="line">        #method = &quot;GET&quot;</span><br><span class="line"></span><br><span class="line">        # The controller to be called for mapped URL path.</span><br><span class="line">        #   * `controller` attribute supports with or without package prefix. For e.g.: `v1/User` or `User`</span><br><span class="line">        #   * `controller` attribute supports both naming conventions. For e.g.: `User` or `UserController`</span><br><span class="line">        controller = &quot;AppController&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>控制类<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> controllers</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"aahframework.org/aah.v0"</span></span><br><span class="line">  <span class="string">"sample/app/models"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// AppController struct application controller</span></span><br><span class="line"><span class="keyword">type</span> AppController <span class="keyword">struct</span> &#123;</span><br><span class="line">  *aah.Context</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Index method is application home page.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *AppController)</span> <span class="title">Index</span><span class="params">()</span></span> &#123;</span><br><span class="line">  data := aah.Data&#123;</span><br><span class="line">    <span class="string">"Greet"</span>: models.Greet&#123;</span><br><span class="line">      Message: <span class="string">"Welcome to aah framework - Web Application"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  a.Reply().Ok().HTML(data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h1><p>这是一个第三方的测试结果</p>
+<table>
+<thead>
+<tr>
+<th>Web Framework</th>
+<th>JSON</th>
+<th>Plaintext</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beego</td>
+<td>334640</td>
+<td>638004</td>
+</tr>
+<tr>
+<td>revel</td>
+<td>249814</td>
+<td>215532</td>
+</tr>
+<tr>
+<td>aah</td>
+<td>181207</td>
+<td>215532</td>
+</tr>
+</tbody>
+</table>
+<p>从表格中可以看出beego的性能是最好的，不过几个框架的性能差别都不算特别大，性能也不是选择这几个框架的主要原因</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="共同点"><a href="#共同点" class="headerlink" title="共同点"></a>共同点</h2><ol>
+<li>三个框架都是Fullstack框架，提供一站式解决方案</li>
+<li>都提供了工具开发、测试、部署，但revel和aah集成度似乎更高，不能单独使用</li>
+<li>性能方面相差不大，而且单机查询性能也能上十万，应该不会是瓶颈。go的性能还是有保障的</li>
+</ol>
+<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h2><ol>
+<li>beego类似传统的mvc框架</li>
+<li>revel和aah比较类似，都学的play framework</li>
+</ol>
+<h2 id="选择推荐"><a href="#选择推荐" class="headerlink" title="选择推荐"></a>选择推荐</h2><ol>
+<li>既然选择全栈开发框架，显然是为了满足展开发效率，beego是国人开发具有较好的中文文档，英文不太好的首选beego、</li>
+<li>revel提供了更为彻底的一站式解决方案，而且也比较成熟，推荐选择</li>
+<li>aah应该来说算是后起之秀，截止本文撰写之日在Github只有304个starts。比较适合尝鲜</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/29/9/" data-id="ck90xgtsz000m57u94rs605i3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aah/">aah</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/beego/">beego</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/revel/">revel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/19/8/" class="article-date">
+  <time datetime="2018-06-19T14:55:33.000Z" itemprop="datePublished">2018-06-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/19/8/">使用Spring Data REST</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><em>Spring Data REST</em>是个快速构建REST服务的脚手架，这里整个项目是基于Spring Boot的</p>
+<h2 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-rest<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="实体类映射"><a href="#实体类映射" class="headerlink" title="实体类映射"></a>实体类映射</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.OneToMany;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置数据DAO"><a href="#配置数据DAO" class="headerlink" title="配置数据DAO"></a>配置数据DAO</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.data.jpa.repository.JpaRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.rest.core.annotation.RepositoryRestResource;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RepositoryRestResource</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StudentRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Student</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><h3 id="对于集合资源"><a href="#对于集合资源" class="headerlink" title="对于集合资源"></a>对于集合资源</h3><p>GET 返回资源，通过page、size和sort来控制返回的数据<br>POST 创建一个新的资源<br>HEAD 资源是否可用</p>
+<p>除了这些外，其他请求都不支持</p>
+<h3 id="对于单个资源"><a href="#对于单个资源" class="headerlink" title="对于单个资源"></a>对于单个资源</h3><p>GET 返回单个资源<br>HEAD 返回资源是否可用<br>PUT 替换资源<br>PATCH 部分更新资源<br>DELETE 删除资源</p>
+<h3 id="对于关联的资源"><a href="#对于关联的资源" class="headerlink" title="对于关联的资源"></a>对于关联的资源</h3><p>GET 获取资源</p>
+<h3 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h3><p>新建使用POST<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST \</span><br><span class="line">  http://localhost:8080/students \</span><br><span class="line">  -H <span class="string">'Cache-Control: no-cache'</span> \</span><br><span class="line">  -H <span class="string">'Content-Type: application/json'</span> \</span><br><span class="line">  -H <span class="string">'Postman-Token: 01b18db0-58a2-4315-8df3-0f783f8d13d0'</span> \</span><br><span class="line">  -d <span class="string">'&#123;</span></span><br><span class="line"><span class="string">	"name": "Jobs"</span></span><br><span class="line"><span class="string">&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">读取采用GET</span><br><span class="line">curl -X GET http://localhost:8080/students</span><br><span class="line"></span><br><span class="line">curl -X GET http://localhost:8080/students/1</span><br></pre></td></tr></table></figure>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>更新使用PUT<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT \</span><br><span class="line">  http://localhost:8080/students/1 \</span><br><span class="line">  -H <span class="string">'Cache-Control: no-cache'</span> \</span><br><span class="line">  -H <span class="string">'Content-Type: application/json'</span> \</span><br><span class="line">  -H <span class="string">'Postman-Token: 0b4029f6-42ba-4c79-9c31-b2f1cb884898'</span> \</span><br><span class="line">  -d <span class="string">'&#123;</span></span><br><span class="line"><span class="string">	"name": "James"</span></span><br><span class="line"><span class="string">&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE \</span><br><span class="line">  http://localhost:8080/students/1 \</span><br><span class="line">  -H <span class="string">'Cache-Control: no-cache'</span> \</span><br><span class="line">  -H <span class="string">'Content-Type: application/json'</span> \</span><br><span class="line">  -H <span class="string">'Postman-Token: c13c0395-eb18-4b43-b16f-8cea06f5f0b0'</span> \</span><br><span class="line">  -d <span class="string">'&#123;</span></span><br><span class="line"><span class="string">	"name": "James"</span></span><br><span class="line"><span class="string">&#125;'</span></span><br></pre></td></tr></table></figure>
+<h2 id="对于关联资源的CRUD"><a href="#对于关联资源的CRUD" class="headerlink" title="对于关联资源的CRUD"></a>对于关联资源的CRUD</h2><p>这个是被关联的资源<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.OneToMany;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这事包含关联资源的类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.annotation.LastModifiedDate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">    <span class="meta">@Version</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> version;</span><br><span class="line">    <span class="meta">@LastModifiedDate</span></span><br><span class="line">    <span class="keyword">private</span> Date date;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@OneToMany</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Teacher&gt; teachers;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.Entity;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.GeneratedValue;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.Id;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.OneToMany;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-1"><a href="#Create-1" class="headerlink" title="Create"></a>Create</h3><ol>
+<li>先插入两个教师</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8080/teachers -d <span class="string">'&#123; "name": "James Hadden" &#125;'</span></span><br><span class="line">curl -X POST http://localhost:8080/teachers -d <span class="string">'&#123; "name": "Crise Pual" &#125;'</span></span><br></pre></td></tr></table></figure>
+<p>教师的ID分别为1， 2</p>
+<ol start="2">
+<li>新建学生</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8080/students -d <span class="string">'&#123; "name": "James Hadden", "teachers": [</span></span><br><span class="line"><span class="string">  "http://localhost:8080/teachers/1", "http://localhost:8080/teachers/1"</span></span><br><span class="line"><span class="string">] &#125;'</span></span><br></pre></td></tr></table></figure>
+<p>这个时候会新建成功，并且教师的信息也会关联到学生上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8080/students -d <span class="string">'&#123; "name": "James Hadden", "teachers": [</span></span><br><span class="line"><span class="string">  "http://localhost:8080/teachers/1", "http://localhost:8080/teachers/1"</span></span><br><span class="line"><span class="string">] &#125;'</span></span><br></pre></td></tr></table></figure>
+<p>我们再次插入学生信息，这个时候数据库就会报错了，因为@OneToMany注解是一个教师只能属于一个学生。这个时候注解应该改为@ManyToMany，这个时候就能插入了</p>
+<h3 id="Update-1"><a href="#Update-1" class="headerlink" title="Update"></a>Update</h3><p>未完待续！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/19/8/" data-id="ck90xgts5000g57u9vmbp2rvo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data/">data</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rest/">rest</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/16/7/" class="article-date">
+  <time datetime="2018-06-16T14:55:33.000Z" itemprop="datePublished">2018-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Rancher/">Rancher</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/16/7/">使用Rancher2.0快速构建Kubernetes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇使用的是Rancher1.6构建的k8s，但是现在Rancher出新版了，并且好像只支持K8s了，看来k8s确实一统天下了</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>Rancher 2.0 推荐使用Ubuntu 16.04构建，其他的好像支持的不是太好，然后节点最好也是Ubuntu 16.04，而且Docker的版本最高也才支持到17.03。</p>
+<p>所以我们需要以下服务器资源：</p>
+<ol>
+<li>一台安装了Docker 17.03.2的Ubuntu 16.04主机，用来安装Rancher Server 2.0。内存要大于等于4G，不然很可能跑不起来</li>
+<li>三台Ubuntu16.04主机，这个一般使用API自动安装</li>
+</ol>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ol>
+<li><p>启动一个Ubuntu 16.04虚拟主机</p>
+</li>
+<li><p>远程到虚拟主机</p>
+</li>
+</ol>
+<p>这里用户名又是root了，根据镜像和云服务提供商可能有所不同，这里我用的还是DigitalOcean，这是我的优惠码<a href="http://www.digitalocean.com/?refcode=f439670561f1" target="_blank" rel="noopener">http://www.digitalocean.com/?refcode=f439670561f1</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;server-ip&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装Docker</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br><span class="line"><span class="comment"># 添加GPG</span></span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"><span class="comment"># 验证GPG</span></span><br><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br><span class="line"><span class="comment"># 添加源</span></span><br><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br><span class="line"><span class="comment"># 更新源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment"># 查看可用版本</span></span><br><span class="line">apt-cache madison docker-ce</span><br><span class="line"><span class="comment"># 安装版本，这里推荐17.03.2</span></span><br><span class="line">sudo apt-get install docker-ce=&lt;VERSION&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>安装Rancher 2.0</li>
+</ol>
+<p>这里绑定了443端口，也就是开启了https，我没试过不用行不行，如果用了，会被浏览器不信任，添加为信任即可访问了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li>访问https://<code>&lt;server-ip&gt;</code></li>
+</ol>
+<p>安装好以后，应该长这个样子，第一次进去会让你输入一个管理员密码的</p>
+<p><img src="/images/微信图片_20180615205938.png" alt></p>
+<ol start="6">
+<li>新建集群</li>
+</ol>
+<p>选择一个你的云主机提供商，我这里是DigitalOcean</p>
+<p><img src="/images/微信图片_201806152059381.png" alt></p>
+<p>新建主机池，这里推荐三个，功能的话全部勾选吧</p>
+<p><img src="/images/微信图片_201806152059382.png" alt></p>
+<ol>
+<li>etcd是个分布式的kv数据库，用来同步集群信息的，这里叫做数据平面</li>
+<li>Control是无状态的集群，负责管理集群的，这里叫编排平面</li>
+<li>Worker是工作集群，也就是你的应用和服务部署的集群，这里叫计算平面</li>
+</ol>
+<p><img src="/images/微信图片_201806152059383.png" alt></p>
+<ol start="7">
+<li>集群建好后，默认会进入名为default的命名空间</li>
+</ol>
+<p>这个是集群面板，看上去还蛮好看的</p>
+<p><img src="/images/微信图片_20180615213919.png" alt></p>
+<p>忘了说了，默认进去是英文界面，这里可以切换到中文</p>
+<ol start="8">
+<li>新建一个工作负载</li>
+</ol>
+<p>这里选用nginx，因为比较简单，部署2个实例</p>
+<p><img src="/images/微信图片_201806152132241.png" alt></p>
+<ol start="9">
+<li>新建一个负债均衡</li>
+</ol>
+<p>这里选择自动生成一个主机名，因为我们还没有启用dns，除非直接使用IP访问，不然访问不到的，xip.io相当于一个免费的域名和dns服务</p>
+<p><img src="/images/微信图片_201806152132242.png" alt></p>
+<ol start="10">
+<li>访问</li>
+</ol>
+<p>等个差不多一分钟，分派好IP以后，就可以直接外网访问了</p>
+<p><img src="/images/微信图片_201806152132244.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/16/7/" data-id="ck90xgts5000h57u9vw4scwhd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DigitalOcean/">DigitalOcean</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/">Kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rancher/">Rancher</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/15/6/" class="article-date">
+  <time datetime="2018-06-15T14:55:33.000Z" itemprop="datePublished">2018-06-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Rancher/">Rancher</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/15/6/">使用Rancher快速构建Kubernetes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在玩<code>Kubernetes</code>，时下最火的容器编排工具，国内外三大云计算平台<code>AWS</code>、<code>Google</code>、<code>Aurze</code><br>国内<code>阿里</code>、<code>腾讯</code>、<code>百度</code>无不支持。可以说已经成为了容器编排领域的事实标准了，现在再搞别的纯属浪费时间。可惜<code>Kubernetes</code>这玩意太复杂，要先玩转先得理解其概念，可能大半天就过去了。</p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>官网提供minikube的mini单机kube安装方式，首先这玩意在我的windows下不太支持，包括在win10下的linux子系统也不行<br>其次在我的老款macbook pro下也安装不了，还一个问题，这是个单机版的，无法体验其所有特性，所以放弃了</p>
+<p>官网还提供了个多节点的部署方式，但是一看说明文档，现在只是实验性支持，瞬间没了兴趣，坑太多不敢踩。<br>无意中看到了Rancher这个神器，几乎全程自动安装不需要敲键盘。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>这里我使用的DigitalOcean云服务，这里不太推荐在本地环境安装k8s，第一安装一个k8s最少需要四台虚拟机或者服务器，每台机器不低于1GB的内存，而且如果使用Rancher的形式安装，那么可能内存不低于2GB，而且本机环境或者本地虚拟机需要解决硬件和网络问题</p>
+<p>所以选择云计算。这里我推荐DigitalOcean，现在注册并认证信用卡就送100美元，有效期2个月。如果没有这个优惠了，可以用我的邀请码，送10美元<a href="http://www.digitalocean.com/?refcode=f439670561f1" target="_blank" rel="noopener">http://www.digitalocean.com/?refcode=f439670561f1</a></p>
+<p>理论上其他的云服务提供商也是可以的，但是如果是国内的服务器，需要解决网络的问题。推荐走阿里的镜像</p>
+<ol>
+<li>先搞一台机器安装Rancher OS，配置最低2GB内存。不然可能跑不起来</li>
+</ol>
+<p>Rancher OS是一个比较纯净的系统，里面自带Docker。理论上安装Ubuntu 16.04也可以的，只是需要自己安装Docker。而且对版本可能也有要求需要17.03</p>
+<p>选择镜像</p>
+<p><img src="/images/微信图片_20180615164233.png" alt></p>
+<p>选择规格</p>
+<p><img src="/images/微信图片_201806151642331.png" alt></p>
+<ol start="2">
+<li>然后进入Rancher OS，注意ssh进入的时候用户名是rancher，不然进不去</li>
+</ol>
+<p>远程登陆</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh rancher@&lt;server-ip&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装Rancher Server</li>
+</ol>
+<p>这里8080端口也可以改为其他端口，国内的运营商可能需要备案才能访问80，443，8080，这个时候可以改为其他端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable</span><br></pre></td></tr></table></figure>
+<p>等待安装成功</p>
+<ol start="4">
+<li>安装成功后进入浏览器输入http://<server-ip>:8080</server-ip></li>
+</ol>
+<p>第一次加载可能有点慢，耐心等待</p>
+<ol start="5">
+<li>然后点击环境管理，添加Kubernetes环境，这个时候需要添加主机，这里最少添加三个主机，不然kubernetes dashboard打不开</li>
+</ol>
+<p>添加环境</p>
+<p><img src="/images/微信图片_201806151642332.png" alt></p>
+<p>选择k8s</p>
+<p><img src="/images/微信图片_201806151642333.png" alt></p>
+<ol start="6">
+<li>三个主机添加好以后，就可以进入UI界面了</li>
+</ol>
+<p><img src="/images/微信图片_201806151642334.png" alt></p>
+<ol start="7">
+<li>点击工作负载，开始部署一个应用</li>
+</ol>
+<p><img src="/images/微信图片_201806151642335.png" alt></p>
+<ol start="8">
+<li>这里先部署一个nginx应用，设置三个副本，对外暴露端口80</li>
+</ol>
+<p><img src="/images/微信图片_201806151642336.png" alt></p>
+<ol start="9">
+<li>等待几分钟后进入overview界面打开链接，这个时候可以看到这个，说明nginx已经成功启动并可以对外提供服务</li>
+</ol>
+<p>进入overview</p>
+<p><img src="/images/微信图片_201806151642337.png" alt></p>
+<p>点击链接</p>
+<p><img src="/images/微信图片_201806151642338.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/15/6/" data-id="ck90xgts4000f57u9rt9u5r9t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DigitalOcean/">DigitalOcean</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/">Kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rancher/">Rancher</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/01/1/" class="article-date">
+  <time datetime="2018-06-01T12:14:23.000Z" itemprop="datePublished">2018-06-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/01/1/">Brainfuck语言解释器的Java实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们先来看看<strong>Brainfuck的定义：</strong></p>
+<p>Müller的目标是创建一种简单的、可以用最小的<a href="https://zh.wikipedia.org/wiki/编译器" target="_blank" rel="noopener">编译器</a>来实现的、匹配<a href="https://zh.wikipedia.org/wiki/图灵完全" target="_blank" rel="noopener">图灵完全</a>思想的编程语言。这种语言由八种<a href="https://zh.wikipedia.org/w/index.php?title=运算符&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">运算符</a>构成，为<a href="https://zh.wikipedia.org/wiki/Amiga" target="_blank" rel="noopener">Amiga</a>机器编写的<a href="https://web.archive.org/web/20070313151559/http://wuarchive.wustl.edu/pub/aminet/dev/lang/brainfuck-2.lha" target="_blank" rel="noopener">编译器（第二版）</a>只有240个<a href="https://zh.wikipedia.org/wiki/字节" target="_blank" rel="noopener">字节</a>大小。</p>
+<p>就象它的名字所暗示的，brainfuck程序很难读懂。尽管如此，brainfuck<a href="https://zh.wikipedia.org/wiki/图灵机" target="_blank" rel="noopener">图灵机</a>一样可以完成任何计算任务。虽然brainfuck的计算方式如此与众不同，但它确实能够正确运行。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字符</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>&gt;</code></td>
+<td style="text-align:left">指针加一</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&lt;</code></td>
+<td style="text-align:left">指针减一</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>+</code></td>
+<td style="text-align:left">指针指向的字节的值加一</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-</code></td>
+<td style="text-align:left">指针指向的字节的值减一</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>.</code></td>
+<td style="text-align:left">输出指针指向的单元内容（ASCII码）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>,</code></td>
+<td style="text-align:left">输入内容到指针指向的单元（ASCII码）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>[</code></td>
+<td style="text-align:left">如果指针指向的单元值为零，向后跳转到对应的<code>]</code>指令的次一指令处</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>]</code></td>
+<td style="text-align:left">如果指针指向的单元值不为零，向前跳转到对应的<code>[</code>指令的次一指令处</td>
+</tr>
+</tbody>
+</table>
+<p>这种语言基于一个简单的机器模型，除了指令，这个机器还包括：一个以字节为单位、被初始化为零的<a href="https://baike.baidu.com/item/数组" target="_blank" rel="noopener">数组</a>、一个指向该数组的<a href="https://baike.baidu.com/item/指针" target="_blank" rel="noopener">指针</a></p>
+<p>（初始时指向数组的第一个字节）、以及用于输入输出的两个字节流。</p>
+<p>首先我们要有一个以字节为单位的数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>[] memory = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">10000</span>];</span><br></pre></td></tr></table></figure>
+<p>这个就是通常计算机的内存，现在假设这个内存有10000长度那么大</p>
+<p>然后我们需要一个指针：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> point = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>初始化为0，也就是指向内存的第一个地址</p>
+<p>这个语言的源代码只有8个字符，我们假定源码为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String source;</span><br></pre></td></tr></table></figure>
+<p>现在我们要读取源码，我们需要一个辅助的属性index来标示我们读到了代码的第几个字符：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> index</span><br></pre></td></tr></table></figure>
+<p>然后我们来处理这些指令：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (b) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'&gt;'</span>:</span><br><span class="line">    point++;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'&lt;'</span>;</span><br><span class="line">    point--;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'+'</span>;</span><br><span class="line">    memory[point]++;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'-'</span>;</span><br><span class="line">    memory[point]--;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'.'</span></span><br><span class="line">    System.out.print(memory[point]);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">','</span>;</span><br><span class="line">    memory[point] = (<span class="keyword">byte</span>) System.in.read();</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实前面6个指令都很简单，关键在于后面2个指令，这个两个指令实际上就是才是逻辑和循环，这其中的核心就是跳转，就是把源代码的指针index的值进行改变，而这个改变是有条件的，下面就是我对这个逻辑的实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (b) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'['</span>:</span><br><span class="line">    <span class="keyword">if</span> (memory[point] == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">while</span> (source.charAt(index) != <span class="string">']'</span>) &#123;</span><br><span class="line">        index++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">']'</span>;</span><br><span class="line">    <span class="keyword">if</span> (memory[point] != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">while</span> (source.charAt(index) != <span class="string">'['</span>) &#123;</span><br><span class="line">        index--;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实就是用while循环来检查代码，然后改变index的值，乍一看好像没毛病，是的，如果是下面这个输出hello, world!的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+++++ +++++             initialize counter (cell #0) to 10</span><br><span class="line">[                       use loop to set the next four cells to 70/100/30/10</span><br><span class="line">    &gt; +++++ ++              add  7 to cell #1</span><br><span class="line">    &gt; +++++ +++++           add 10 to cell #2</span><br><span class="line">    &gt; +++                   add  3 to cell #3</span><br><span class="line">    &gt; +                     add  1 to cell #4</span><br><span class="line">    &lt;&lt;&lt;&lt; -                  decrement counter (cell #0)</span><br><span class="line">]</span><br><span class="line">&gt; ++ .                  print &apos;H&apos;</span><br><span class="line">&gt; + .                   print &apos;e&apos;</span><br><span class="line">+++++ ++ .              print &apos;l&apos;</span><br><span class="line">.                       print &apos;l&apos;</span><br><span class="line">+++ .                   print &apos;o&apos;</span><br><span class="line">&gt; ++ .                  print &apos; &apos;</span><br><span class="line">&lt;&lt; +++++ +++++ +++++ .  print &apos;W&apos;</span><br><span class="line">&gt; .                     print &apos;o&apos;</span><br><span class="line">+++ .                   print &apos;r&apos;</span><br><span class="line">----- - .               print &apos;l&apos;</span><br><span class="line">----- --- .             print &apos;d&apos;</span><br><span class="line">&gt; + .                   print &apos;!&apos;</span><br><span class="line">&gt; .                     print &apos;\n&apos;</span><br></pre></td></tr></table></figure>
+<p>确实没有毛病，但是对于下面这个乘法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">,&gt;,,&gt;++++++++[&lt;------&lt;------&gt;&gt;-]</span><br><span class="line">&lt;&lt;[&gt;[&gt;+&gt;+&lt;&lt;-]&gt;&gt;[&lt;&lt;+&gt;&gt;-]&lt;&lt;&lt;-]</span><br><span class="line">&gt;&gt;&gt;++++++[&lt;++++++++&gt;-],&lt;.&gt;.</span><br></pre></td></tr></table></figure>
+<p>就有问题了，因为这里面有个多重循环，如何界定“[”对应的“]”就不准确了，这才是整个程序的难点。</p>
+<p>我们先来看看，如何理解对应这个意思，我的理解为：<strong>如果字符[]中间有n个[和n个]字符，那么他们是一对，n&gt;=0</strong></p>
+<p>按照这个理论，我们开始写代码</p>
+<p>先定义一个计数器，出现[就加1，出现]就减1，这和上面那个理解是一个意思，只不过简化为一个变量表示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>然后在定义一个index移动的偏移量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> offset = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>然后开始跳转</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 起始偏移量为1，一直到代码结束</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">1</span>; index + offset &lt; source.length(); offset++) &#123;</span><br><span class="line">  <span class="comment">// 找到跳转字符]且n相等，也就是count=0，计算index的值并跳出循环</span></span><br><span class="line">  <span class="keyword">if</span> (source.charAt(index + offset) == <span class="string">']'</span> &amp;&amp; count == <span class="number">0</span>) &#123;</span><br><span class="line">    index += offset;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (source.charAt(index + offset) == <span class="string">'['</span>) count++;</span><br><span class="line">  <span class="keyword">if</span> (source.charAt(index + offset) == <span class="string">']'</span> &amp;&amp; count != <span class="number">0</span>) count--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是完整的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.xiongdi.study;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BrainfuckInterpreter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] memory = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1000</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> point = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String source)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; source.length(); index++) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (source.charAt(index)) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&gt;'</span>:</span><br><span class="line">                    point++;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&lt;'</span>:</span><br><span class="line">                    point--;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'+'</span>:</span><br><span class="line">                    memory[point]++;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">                    memory[point]--;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'.'</span>:</span><br><span class="line">                    System.out.print((<span class="keyword">char</span>) memory[point]);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">','</span>:</span><br><span class="line">                    memory[point] = (<span class="keyword">byte</span>) System.in.read();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'['</span>:</span><br><span class="line">                    <span class="keyword">if</span> (memory[point] == <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">1</span>; index + offset &lt; source.length(); offset++) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (source.charAt(index + offset) == <span class="string">']'</span> &amp;&amp; count == <span class="number">0</span>) &#123;</span><br><span class="line">                                index += offset;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">if</span> (source.charAt(index + offset) == <span class="string">'['</span>) count++;</span><br><span class="line">                            <span class="keyword">if</span> (source.charAt(index + offset) == <span class="string">']'</span> &amp;&amp; count != <span class="number">0</span>) count--;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">']'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (memory[point] != <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> offset = <span class="number">1</span>; index - offset &gt;= <span class="number">0</span>; offset++) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (source.charAt(index - offset) == <span class="string">'['</span> &amp;&amp; count == <span class="number">0</span>) &#123;</span><br><span class="line">                                index -= offset;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">if</span> (source.charAt(index - offset) == <span class="string">']'</span>) count++;</span><br><span class="line">                            <span class="keyword">if</span> (source.charAt(index - offset) == <span class="string">'['</span> &amp;&amp; count != <span class="number">0</span>) count--;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/01/1/" data-id="ck90xgts8000l57u9a8kc88v1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Brainfuck/">Brainfuck</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/07/2/" class="article-date">
+  <time datetime="2017-06-07T15:12:58.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/2/">使用xjc工具自动生成DTD格式的JAXB类</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。</strong></p>
+<p><strong>DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。</strong></p>
+<p>我们先来看一下一个典型 的DTD文档定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br></pre></td></tr></table></figure>
+<p>新建个文件post.dtd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch post.dtd</span><br></pre></td></tr></table></figure>
+<p>然后把刚才的文件定义写入文件。</p>
+<p>xjc是一个java命令行工具，用户把XML格式定义的数据结构生成生成 JAXB 类。只要你安装了JDK就会有这个工具</p>
+<p>我们先来看看xjc具有哪些功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">用法: xjc [-options ...] &lt;schema file/URL/dir/jar&gt; ... [-b &lt;bindinfo&gt;] ...</span><br><span class="line">如果指定 dir, 将编译该目录中的所有模式文件。</span><br><span class="line">如果指定 jar, 将编译 /META-INF/sun-jaxb.episode 绑定文件。</span><br><span class="line">选项:</span><br><span class="line">  -nv                :  不对输入模式执行严格验证</span><br><span class="line">  -extension         :  允许供应商扩展 - 不严格遵循</span><br><span class="line">                        JAXB 规范中的兼容性规则和应用程序 E.2</span><br><span class="line">  -b &lt;file/dir&gt;      :  指定外部绑定文件 (每个 &lt;file&gt; 必须具有自己的 -b)</span><br><span class="line">                        如果指定目录, 则将搜索 **/*.xjb</span><br><span class="line">  -d &lt;dir&gt;           :  生成的文件将放入此目录中</span><br><span class="line">  -p &lt;pkg&gt;           :  指定目标程序包</span><br><span class="line">  -httpproxy &lt;proxy&gt; :  设置 HTTP/HTTPS 代理。格式为 [user[:password]@]proxyHost:proxyPort</span><br><span class="line">  -httpproxyfile &lt;f&gt; :  作用与 -httpproxy 类似, 但在文件中采用参数来保护口令</span><br><span class="line">  -classpath &lt;arg&gt;   :  指定查找用户类文件的位置</span><br><span class="line">  -catalog &lt;file&gt;    :  指定用于解析外部实体引用的目录文件</span><br><span class="line">                        支持 TR9401, XCatalog 和 OASIS XML 目录格式。</span><br><span class="line">  -readOnly          :  生成的文件将处于只读模式</span><br><span class="line">  -npa               :  禁止生成程序包级别注释 (**/package-info.java)</span><br><span class="line">  -no-header         :  禁止生成带有时间戳的文件头</span><br><span class="line">  -target (2.0|2.1)  :  行为与 XJC 2.0 或 2.1 类似, 用于生成不使用任何 2.2 功能的代码。</span><br><span class="line">  -encoding &lt;encoding&gt; :  为生成的源文件指定字符编码</span><br><span class="line">  -enableIntrospection :  用于正确生成布尔型 getter/setter 以启用 Bean 自测 apis </span><br><span class="line">  -contentForWildcard  :  为具有多个 xs:any 派生元素的类型生成内容属性</span><br><span class="line">  -xmlschema         :  采用 W3C XML 模式处理输入 (默认值)</span><br><span class="line">  -relaxng           :  采用 RELAX NG 处理输入 (实验性的, 不支持)</span><br><span class="line">  -relaxng-compact   :  采用 RELAX NG 简洁语法处理输入 (实验性的, 不支持)</span><br><span class="line">  -dtd               :  采用 XML DTD 处理输入 (实验性的, 不支持)</span><br><span class="line">  -wsdl              :  采用 WSDL 处理输入并编译其中的模式 (实验性的, 不支持)</span><br><span class="line">  -verbose           :  特别详细</span><br><span class="line">  -quiet             :  隐藏编译器输出</span><br><span class="line">  -help              :  显示此帮助消息</span><br><span class="line">  -version           :  显示版本信息</span><br><span class="line">  -fullversion       :  显示完整的版本信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">扩展:</span><br><span class="line">  -Xinject-code      :  inject specified Java code fragments into the generated code</span><br><span class="line">  -Xlocator          :  enable source location support for generated code</span><br><span class="line">  -Xsync-methods     :  generate accessor methods with the &apos;synchronized&apos; keyword</span><br><span class="line">  -mark-generated    :  mark the generated code as @javax.annotation.Generated</span><br><span class="line">  -episode &lt;FILE&gt;    :  generate the episode file for separate compilation</span><br><span class="line">  -Xpropertyaccessors :  Use XmlAccessType PROPERTY instead of FIELD for generated classes</span><br></pre></td></tr></table></figure>
+<p>默认情况下xjc是吧.xsd格式的数据生成JAXB类，如果要使用.dtd生成JAXB类，需要使用参数`-dtd`</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xjc -dtd post.dtd</span><br></pre></td></tr></table></figure>
+<p>然后生成了如下两个类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">generated/Note.java</span><br><span class="line">generated/ObjectFactory.java</span><br></pre></td></tr></table></figure>
+<p>我们来看看生成的类Note.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 此文件是由 JavaTM Architecture for XML Binding (JAXB) 引用实现 v2.2.8-b130911.1802 生成的</span></span><br><span class="line"><span class="comment">// 请访问 &lt;a href="http://java.sun.com/xml/jaxb"&gt;http://java.sun.com/xml/jaxb&lt;/a&gt; </span></span><br><span class="line"><span class="comment">// 在重新编译源模式时, 对此文件的所有修改都将丢失。</span></span><br><span class="line"><span class="comment">// 生成时间: 2017.09.30 时间 04:04:53 PM CST </span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> generated;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlAccessType;</span><br><span class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlAccessorType;</span><br><span class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlElement;</span><br><span class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</span><br><span class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlType;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@XmlAccessorType</span>(XmlAccessType.FIELD)</span><br><span class="line"><span class="meta">@XmlType</span>(name = <span class="string">""</span>, propOrder = &#123;</span><br><span class="line">    <span class="string">"to"</span>,</span><br><span class="line">    <span class="string">"from"</span>,</span><br><span class="line">    <span class="string">"heading"</span>,</span><br><span class="line">    <span class="string">"body"</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="meta">@XmlRootElement</span>(name = <span class="string">"note"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Note</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@XmlElement</span>(required = <span class="keyword">true</span>)</span><br><span class="line">    <span class="keyword">protected</span> String to;</span><br><span class="line">    <span class="meta">@XmlElement</span>(required = <span class="keyword">true</span>)</span><br><span class="line">    <span class="keyword">protected</span> String from;</span><br><span class="line">    <span class="meta">@XmlElement</span>(required = <span class="keyword">true</span>)</span><br><span class="line">    <span class="keyword">protected</span> String heading;</span><br><span class="line">    <span class="meta">@XmlElement</span>(required = <span class="keyword">true</span>)</span><br><span class="line">    <span class="keyword">protected</span> String body;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取to属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *     possible object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> to;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置to属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value</span></span><br><span class="line"><span class="comment">     *     allowed object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTo</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.to = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取from属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *     possible object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFrom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> from;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置from属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value</span></span><br><span class="line"><span class="comment">     *     allowed object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFrom</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.from = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取heading属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *     possible object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHeading</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> heading;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置heading属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value</span></span><br><span class="line"><span class="comment">     *     allowed object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHeading</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.heading = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取body属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     *     possible object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getBody</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> body;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置body属性的值。</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value</span></span><br><span class="line"><span class="comment">     *     allowed object is</span></span><br><span class="line"><span class="comment">     *     &#123;<span class="doctag">@link</span> String &#125;</span></span><br><span class="line"><span class="comment">     *     </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBody</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.body = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一个标准的JAXB类就生成好了，可以序列化为xml文档了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2017/06/07/2/" data-id="ck90xgtrw000657u9vdkrdhsy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DTD/">DTD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAXB/">JAXB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xjc/">xjc</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rancher/">Rancher</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainfuck/">Brainfuck</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DigitalOcean/">DigitalOcean</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Email/">Email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAXB/">JAXB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LevelDB/">LevelDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MemTable/">MemTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rancher/">Rancher</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static/">Static</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aah/">aah</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beego/">beego</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/">data</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rest/">rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/revel/">revel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xjc/">xjc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/平方根/">平方根</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/牛顿法/">牛顿法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Brainfuck/" style="font-size: 10px;">Brainfuck</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Database/" style="font-size: 17.5px;">Database</a> <a href="/tags/DigitalOcean/" style="font-size: 12.5px;">DigitalOcean</a> <a href="/tags/Email/" style="font-size: 10px;">Email</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/JAXB/" style="font-size: 10px;">JAXB</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Kubernetes/" style="font-size: 12.5px;">Kubernetes</a> <a href="/tags/LevelDB/" style="font-size: 12.5px;">LevelDB</a> <a href="/tags/MemTable/" style="font-size: 10px;">MemTable</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Rancher/" style="font-size: 12.5px;">Rancher</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a> <a href="/tags/Static/" style="font-size: 10px;">Static</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/aah/" style="font-size: 10px;">aah</a> <a href="/tags/beego/" style="font-size: 10px;">beego</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/rest/" style="font-size: 10px;">rest</a> <a href="/tags/revel/" style="font-size: 10px;">revel</a> <a href="/tags/xjc/" style="font-size: 10px;">xjc</a> <a href="/tags/平方根/" style="font-size: 10px;">平方根</a> <a href="/tags/牛顿法/" style="font-size: 10px;">牛顿法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/23/">Java高级工程师面试要点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/03/22/">《《如何高效学习》》阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/03/21/">学习计划</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/26/20/">《计算机科学导论》读后感</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/13/19/">给MongoDB设置密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 熊迪<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

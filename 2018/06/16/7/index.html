@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-45018235-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>使用Rancher2.0快速构建Kubernetes | 一语</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言上一篇使用的是Rancher1.6构建的k8s，但是现在Rancher出新版了，并且好像只支持K8s了，看来k8s确实一统天下了 环境准备Rancher 2.0 推荐使用Ubuntu 16.04构建，其他的好像支持的不是太好，然后节点最好也是Ubuntu 16.04，而且Docker的版本最高也才支持到17.03。 所以我们需要以下服务器资源：  一台安装了Docker 17.03.2的Ubu">
+<meta name="keywords" content="Rancher,Kubernetes,DigitalOcean">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Rancher2.0快速构建Kubernetes">
+<meta property="og:url" content="https://1word.fun/2018/06/16/7/index.html">
+<meta property="og:site_name" content="一语">
+<meta property="og:description" content="前言上一篇使用的是Rancher1.6构建的k8s，但是现在Rancher出新版了，并且好像只支持K8s了，看来k8s确实一统天下了 环境准备Rancher 2.0 推荐使用Ubuntu 16.04构建，其他的好像支持的不是太好，然后节点最好也是Ubuntu 16.04，而且Docker的版本最高也才支持到17.03。 所以我们需要以下服务器资源：  一台安装了Docker 17.03.2的Ubu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://1word.fun/images/微信图片_20180615205938.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_201806152059381.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_201806152059382.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_201806152059383.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_20180615213919.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_201806152132241.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_201806152132242.png">
+<meta property="og:image" content="https://1word.fun/images/微信图片_201806152132244.png">
+<meta property="og:updated_time" content="2019-12-02T01:56:20.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Rancher2.0快速构建Kubernetes">
+<meta name="twitter:description" content="前言上一篇使用的是Rancher1.6构建的k8s，但是现在Rancher出新版了，并且好像只支持K8s了，看来k8s确实一统天下了 环境准备Rancher 2.0 推荐使用Ubuntu 16.04构建，其他的好像支持的不是太好，然后节点最好也是Ubuntu 16.04，而且Docker的版本最高也才支持到17.03。 所以我们需要以下服务器资源：  一台安装了Docker 17.03.2的Ubu">
+<meta name="twitter:image" content="https://1word.fun/images/微信图片_20180615205938.png">
+  
+    <link rel="alternate" href="/atom.xml" title="一语" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一语</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">One word, fun! -&gt; 1word.fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://1word.fun"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/16/7/" class="article-date">
+  <time datetime="2018-06-16T14:55:33.000Z" itemprop="datePublished">2018-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Rancher/">Rancher</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Rancher2.0快速构建Kubernetes
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇使用的是Rancher1.6构建的k8s，但是现在Rancher出新版了，并且好像只支持K8s了，看来k8s确实一统天下了</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>Rancher 2.0 推荐使用Ubuntu 16.04构建，其他的好像支持的不是太好，然后节点最好也是Ubuntu 16.04，而且Docker的版本最高也才支持到17.03。</p>
+<p>所以我们需要以下服务器资源：</p>
+<ol>
+<li>一台安装了Docker 17.03.2的Ubuntu 16.04主机，用来安装Rancher Server 2.0。内存要大于等于4G，不然很可能跑不起来</li>
+<li>三台Ubuntu16.04主机，这个一般使用API自动安装</li>
+</ol>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ol>
+<li><p>启动一个Ubuntu 16.04虚拟主机</p>
+</li>
+<li><p>远程到虚拟主机</p>
+</li>
+</ol>
+<p>这里用户名又是root了，根据镜像和云服务提供商可能有所不同，这里我用的还是DigitalOcean，这是我的优惠码<a href="http://www.digitalocean.com/?refcode=f439670561f1" target="_blank" rel="noopener">http://www.digitalocean.com/?refcode=f439670561f1</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;server-ip&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装Docker</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br><span class="line"><span class="comment"># 添加GPG</span></span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"><span class="comment"># 验证GPG</span></span><br><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br><span class="line"><span class="comment"># 添加源</span></span><br><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br><span class="line"><span class="comment"># 更新源</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment"># 查看可用版本</span></span><br><span class="line">apt-cache madison docker-ce</span><br><span class="line"><span class="comment"># 安装版本，这里推荐17.03.2</span></span><br><span class="line">sudo apt-get install docker-ce=&lt;VERSION&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>安装Rancher 2.0</li>
+</ol>
+<p>这里绑定了443端口，也就是开启了https，我没试过不用行不行，如果用了，会被浏览器不信任，添加为信任即可访问了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li>访问https://<code>&lt;server-ip&gt;</code></li>
+</ol>
+<p>安装好以后，应该长这个样子，第一次进去会让你输入一个管理员密码的</p>
+<p><img src="/images/微信图片_20180615205938.png" alt></p>
+<ol start="6">
+<li>新建集群</li>
+</ol>
+<p>选择一个你的云主机提供商，我这里是DigitalOcean</p>
+<p><img src="/images/微信图片_201806152059381.png" alt></p>
+<p>新建主机池，这里推荐三个，功能的话全部勾选吧</p>
+<p><img src="/images/微信图片_201806152059382.png" alt></p>
+<ol>
+<li>etcd是个分布式的kv数据库，用来同步集群信息的，这里叫做数据平面</li>
+<li>Control是无状态的集群，负责管理集群的，这里叫编排平面</li>
+<li>Worker是工作集群，也就是你的应用和服务部署的集群，这里叫计算平面</li>
+</ol>
+<p><img src="/images/微信图片_201806152059383.png" alt></p>
+<ol start="7">
+<li>集群建好后，默认会进入名为default的命名空间</li>
+</ol>
+<p>这个是集群面板，看上去还蛮好看的</p>
+<p><img src="/images/微信图片_20180615213919.png" alt></p>
+<p>忘了说了，默认进去是英文界面，这里可以切换到中文</p>
+<ol start="8">
+<li>新建一个工作负载</li>
+</ol>
+<p>这里选用nginx，因为比较简单，部署2个实例</p>
+<p><img src="/images/微信图片_201806152132241.png" alt></p>
+<ol start="9">
+<li>新建一个负债均衡</li>
+</ol>
+<p>这里选择自动生成一个主机名，因为我们还没有启用dns，除非直接使用IP访问，不然访问不到的，xip.io相当于一个免费的域名和dns服务</p>
+<p><img src="/images/微信图片_201806152132242.png" alt></p>
+<ol start="10">
+<li>访问</li>
+</ol>
+<p>等个差不多一分钟，分派好IP以后，就可以直接外网访问了</p>
+<p><img src="/images/微信图片_201806152132244.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://1word.fun/2018/06/16/7/" data-id="ck90xgts5000h57u9vw4scwhd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DigitalOcean/">DigitalOcean</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kubernetes/">Kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rancher/">Rancher</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/19/8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用Spring Data REST
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/15/6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用Rancher快速构建Kubernetes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rancher/">Rancher</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brainfuck/">Brainfuck</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DTD/">DTD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DigitalOcean/">DigitalOcean</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Email/">Email</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAXB/">JAXB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kubernetes/">Kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LevelDB/">LevelDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MemTable/">MemTable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rancher/">Rancher</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static/">Static</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TypeScript/">TypeScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aah/">aah</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beego/">beego</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data/">data</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rest/">rest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/revel/">revel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xjc/">xjc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/平方根/">平方根</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/牛顿法/">牛顿法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Brainfuck/" style="font-size: 10px;">Brainfuck</a> <a href="/tags/DTD/" style="font-size: 10px;">DTD</a> <a href="/tags/Database/" style="font-size: 17.5px;">Database</a> <a href="/tags/DigitalOcean/" style="font-size: 12.5px;">DigitalOcean</a> <a href="/tags/Email/" style="font-size: 10px;">Email</a> <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/JAXB/" style="font-size: 10px;">JAXB</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Kubernetes/" style="font-size: 12.5px;">Kubernetes</a> <a href="/tags/LevelDB/" style="font-size: 12.5px;">LevelDB</a> <a href="/tags/MemTable/" style="font-size: 10px;">MemTable</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Rancher/" style="font-size: 12.5px;">Rancher</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a> <a href="/tags/Static/" style="font-size: 10px;">Static</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/aah/" style="font-size: 10px;">aah</a> <a href="/tags/beego/" style="font-size: 10px;">beego</a> <a href="/tags/data/" style="font-size: 10px;">data</a> <a href="/tags/go/" style="font-size: 10px;">go</a> <a href="/tags/rest/" style="font-size: 10px;">rest</a> <a href="/tags/revel/" style="font-size: 10px;">revel</a> <a href="/tags/xjc/" style="font-size: 10px;">xjc</a> <a href="/tags/平方根/" style="font-size: 10px;">平方根</a> <a href="/tags/牛顿法/" style="font-size: 10px;">牛顿法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/27/23/">Java高级工程师面试要点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/03/22/">《《如何高效学习》》阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/03/21/">学习计划</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/26/20/">《计算机科学导论》读后感</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/13/19/">给MongoDB设置密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 熊迪<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
