@@ -4,7 +4,7 @@ createTime: 2024/09/10 18:16:02
 permalink: /roadmap/java/
 ---
 
-![Java学习路线图](/images/roadmap-java.jpg)
+<!-- ![Java学习路线图](/images/roadmap-java.jpg) -->
 
 从你上传的文件中提取到的部分信息是关于 Java 的学习路线图。以下是内容摘要：
 
