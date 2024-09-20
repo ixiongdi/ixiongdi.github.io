@@ -48,5 +48,5 @@ jobs:
           echo "$ECS" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan congee.icu >> ~/.ssh/known_hosts
-          scp -r .vuepress/dist/* root@congee.icu:/usr/share/nginx/html
+          scp -r docs/.vuepress/dist/* root@congee.icu:/usr/share/nginx/html
           ssh root@congee.icu 'sudo systemctl restart nginx'
